@@ -57,20 +57,20 @@ pipeline {
             }
         }
         
-        stage('Deploy to tomcat') {
-            steps {
-             deploy adapters: [tomcat9(credentialsId: 'home', path: '', url: 'http://52.23.240.149:8080')], contextPath: 'reg', war: '**/*.war'
+         stage('Deploy to tomcat') {
+             steps {
+              deploy adapters: [tomcat9(credentialsId: 'home', path: '', url: 'http://52.23.240.149:8080')], contextPath: 'reg', war: '**/*.war'
             }
         }
         
-         stage('Notification Mail to the Team') {
-            steps {
-             emailext body: '''Hi Team,
+//          stage('Notification Mail to the Team') {
+//             steps {
+//              emailext body: '''Hi Team,
 
-This is to inform you all that the build was successful and we can move to second project in our schedules.
+// This is to inform you all that the build was successful and we can move to second project in our schedules.
 
-Regards, ''', recipientProviders: [buildUser()], subject: 'The build was successful ', to: 'gbadamosisaheedo@gmail.com'
-            }
-        }
+// Regards, ''', recipientProviders: [buildUser()], subject: 'The build was successful ', to: 'gbadamosisaheedo@gmail.com'
+//             }
+//         }
     }
 }
